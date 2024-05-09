@@ -1,0 +1,23 @@
+{
+  "name": "3yearold",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "esbuild src/index.ts --bundle --platform=node --outfile=index.js",
+    "zip": "[ -f index.zip ] && rm index.zip; zip index.zip index.js",
+    "push-to-aws": "aws lambda update-function-code --function-name 3yearold --zip-file fileb://index.zip",
+    "deploy": "npm run build && npm run zip && npm run push-to-aws"
+  },
+  "author": "perioad",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.572.0",
+    "@aws-sdk/lib-dynamodb": "^3.572.0",
+    "linkedom": "^0.16.11",
+    "openai": "^4.43.0",
+    "twitter-api-v2": "^1.16.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.10",
+    "esbuild": "^0.21.1"
+  }
+}

@@ -11,8 +11,8 @@ export async function getTrend(): Promise<string | null> {
   const usedTrends = await getUsedTrends();
 
   for (const trend of trends) {
-    if (!usedTrends.includes(trend)) {
-      await saveTrend(trend);
+    if (!usedTrends.includes(trend.trim().toLowerCase())) {
+      await saveTrend(trend.trim().toLowerCase());
 
       return trend;
     }

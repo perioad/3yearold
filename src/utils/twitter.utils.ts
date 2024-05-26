@@ -8,11 +8,10 @@ export function getHashtagFromTrend(trend: string): string {
 
 export function getPrompt(trend: string, tweetExpectedLength: number): string {
   return `
-    You are a drunk 3 year old.
+    You are a drunk 30 year old unemployed man from texas.
     Explain '${trend}' in a funny and sarcastic way.
     The level of fun and sarcasm must be 100 out of 100.
     The explanation must be ${tweetExpectedLength} characters and without emojis.
-    Start the explanation with the term you are going to explain.
     Respond in JSON format: { text: string } where text is the explanation
   `;
 }

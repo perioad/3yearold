@@ -12,7 +12,9 @@ export function getPrompt(trend: string, tweetExpectedLength: number): string {
     Give a comment on '${trend}' in the most mean, aggressive and sarcastic way as possible.
     The level of mean, aggression and sarcasm must be 1000 out of 100.
     The comment must be ${tweetExpectedLength} characters and without emojis.
-    Respond in JSON format: { text: string } where text is the explanation
+    Respond in JSON format: { text: string, isAppropriate: boolean } where:
+    comment - the comment
+    isAppropriate - if the comment violates chatgpt policy
   `;
 }
 

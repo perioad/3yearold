@@ -48,15 +48,27 @@ export async function getTweet(
       return null;
     }
 
-    const newTweet = JSON.parse(response.content)?.text as string;
+    const newTweet = JSON.parse(response.content) as {
+      comment: string;
+      isAppropriate: boolean;
+    };
 
-    if (!newTweet) {
+    if (!newTweet.comment) {
       console.log('No new tweet found');
 
       return null;
     }
 
-    const newTweetWithHashtags = getTweetWithHashtags(newTweet, trendHashtag);
+    if (!newTweet.isAppropriate) {
+      console.log('Tweet is inappropriate:', newTweet.comment);
+
+      return null;
+    }
+
+    const newTweetWithHashtags = getTweetWithHashtags(
+      newTweet.comment,
+      trendHashtag
+    );
 
     if (newTweetWithHashtags.length > 280) {
       console.log('Tweet too long:', newTweetWithHashtags);
